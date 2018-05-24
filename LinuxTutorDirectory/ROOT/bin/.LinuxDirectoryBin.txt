@@ -1,0 +1,68 @@
+Welcome to the bin directory!
+
+Here is where your computers Essential binary files.
+Binaries are executable programs that have been compiled
+down to machine code.
+
+More information about binaries can be found at https://en.wikipedia.org/wiki/Executable
+
+Instructions:
+
+Now we will learn more about the ls command
+
++--------------------+
+|$ ls                |
++--------------------+
+
+ls comes with options, options allow the program to be more dynamic.
+
+The list command has many options and all these options can be viewed by
+typeing:
+
++--------------------+
+|$ ls --help         |
++--------------------+
+
+--help is an option that brings up all the other options ls offers
+
+A couple more options:
+
+
++--------------------+
+|$ ls --all          |
++--------------------+
+
+--all will show all files and directories within the current directory.
+This is useful for view dotfiles. dotfiles are hiddenfiles on the system.
+Note: some commands offer a shorthand notation so -a will do the same thing
+as --all. Its a typical convention that shorthand have one - prior and
+full commands have two -- before.
+
+
++--------------------+
+|$ ls -l             |
++--------------------+
+
+-l will show you all the current files and their permissions. Dont worry about
+understanding permissions we will cover that later.
+
+You can also combine options, but be careful because some programs like the
+GNU compiler doesn't allow this feature. But most programs do.
+
++--------------------+
+|$ ls -al            |
++--------------------+
+
+-al will list all the files and subdirectories along with their permissions.
+
+Once you have tried all of these features you can change to the next directory
+and run the LinuxTutor
+
++---------------------------+
+|$ cd ../boot && LinuxTutor |
++---------------------------+
+
+Note: you can move up a directory and into another directory all in one command.
+A combination of directories is called a Path. The Path must be exact, as it cannot
+jump over other folders. Think of a Path as a road, you cannot get from one end of town
+to the other without following the roads. The roads in this case are directories.

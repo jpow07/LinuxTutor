@@ -1,0 +1,35 @@
+Welcome to the Linux Tutor Directory!
+
+Here you will find a collection of folders meant to represent the linux file system. We can navigate these folders, change permissions, documents and even delete things without worrying that we will mess something up.
+
+To visualize the linux file system try to imagine a factor tree. At the top of the factor tree is the root directory, the root directory holds every other directory on the system.
+
+Contained within the root directory are the following:
+
+bin   - This folder holds your computers binary files, files that have been compiled down into code the computer hardware cana understand
+boot  - This folder holds your computers bootloader, these files tell your computer how it should start up when you turn it on
+dev   - This folder holds your device drivers, these programs control each specific piece of hardware, Note: each piece of hardware requires unique software in order to function properly
+etc   - This folder is the Etcetra folder, it holds User config files
+home  - This folder holds all your User specific files, like your Desktop, Documents, Pictures, etc
+lib   - This folder holds library files
+media - This folder stores external storage devices, for example if you plug a USB into your computer and you want to get some files off of it, this is where you go to do that
+mnt   - This folder is for external devices, For example...
+opt   - This folder is the optional file and it stores unessentail programs that you the user have installed.
+proc  - This folder is the process file system and is responsible for
+root  - This folder is the root user folder, not to be mistaken for the root folder mentioned earlier
+sbin  - This folder holds your system files
+srv   - This folder holds your service files
+tmp   - This folder holds temporary files,that are cleared out after a specified time, typically on shut down
+usr   - This folder holds your application files   
+var   - This folder stores files that are subject to frequent changes
+
+to learn more about each file system simply move to that directory but before you do that you might need a little help getting back.
+
+We have already learned how to move into directories but how do we move back to the previous directory?
+
+To move up a directory you will type "cd .." this will move you to the parent directory, or to the folder you just came from.
+
+Now go ahead and move to the bin directory.
+
+"cd bin"
+

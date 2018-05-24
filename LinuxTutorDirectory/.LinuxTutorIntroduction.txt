@@ -1,0 +1,83 @@
+
+                 Welcome to LinuxTutor!
+
+This Program will help you familiarize yourself with some basic
+commands that you will need to navigate your way around the file
+system.
+
+This program is intended to help an Absolute Linux NOOB, navigate
+their way around the linux terminal without having to do a bunch of
+internet searches.
+
+This program will help you navigate the file system, edit documents,
+as well as learn some basic terminal commands.
+
+This Tutorial will take it one step at a time.
+
+Most of the instructions will not be as long as this one, so don't get
+intimidated.
+
+Instructions:
+
+The Linux Terminal is case sensitive which means that dog is not the
+same as Dog. Something to keep in your mind at all times.
+
+Anytime there is a command to be entered, it will be surrounded by a
+box.
+
+For Example:
+
++----------------------------+
+|$ command arg1 arg2 ..      |
++----------------------------+
+
+The $ indicates the command prompt and should not be typed into the
+command bar. It's sole purpose is to let you know you will be working
+within the terminal.
+
+Also, Below the box will be a description of all the keywords used.
+
+If at any time you forget what you're supposed to be doing you may
+simply scroll up in the terminal and refer back to these notes.
+However, the terminal will cut off text files if they are too long in
+which case you can simply run the LinuxTutor command again.
+
+Lesson 1:
+
+To Begin we will install a program, specifically a powerful text
+editor, called vim onto your machine.
+
+To install a program we give it the command:
+
++----------------------------+
+|$ sudo apt-get install vim  |
++----------------------------+
+
+sudo : is shorthand for "super user do" which allows the user to execute
+programs as root user. You will prefix sudo at the beginning of line
+when you need permission to do something and the terminal says
+permission denied.
+
+apt-get : allows you to get things from the Advanced Packaging
+Tool(apt).
+
+install : lets you install the package
+
+vim : is a package, if you wanted to install another program such as
+emacs you would simply replace vim with emacs.
+
+1. Once vim is installed go through vimtutor
+2. After completing the vimtutor a couple times we are going to change
+directories, dont worry I will explain cd further when we get to the
+next directory.
+
+
+1. +--------------------+
+   |$ vimtutor          |
+   +--------------------+
+
+2. +--------------------+
+   |$ cd ROOT           |
+   +--------------------+
+
+Note: remember that Linux is case sensitive so ROOT must all be capital.

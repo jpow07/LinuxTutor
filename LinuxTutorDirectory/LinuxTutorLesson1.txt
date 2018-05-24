@@ -1,0 +1,11 @@
+
+Congratulations on learning Vim, it will take a while to master it though, I recommend executing vimtutor and running through it before every terminal session until it becomes second nature.
+
+Now we will start moving through the directories, also refferred to as folders in a GUI (Graphical User Interface).
+
+To move from one directory to another simply using the change directory commmand or cd
+
+In the command prompt type "cd LinuxTutorDirectory"
+
+
+

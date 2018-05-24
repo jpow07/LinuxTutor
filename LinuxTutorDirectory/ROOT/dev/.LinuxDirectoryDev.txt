@@ -1,0 +1,77 @@
+Welcome to the dev Directory!
+
+The dev directory holds Essential device files. Device files are interfaces
+for your computers hardware. These files are used to control how each hardware
+device will operate in your computer.
+
+To learn more about device files go to https://en.wikipedia.org/wiki/Device_file
+
+Now we will learn about pwd, cat and grep, echo and more operators
+
++--------------+
+|$ pwd         |
++--------------+
+
+pwd is a command that prints the working directory, or in lamens terms
+it tells you what directory your in. This can be helpful at times but
+its usually written on the command line before the $ sign
+
++-----------------+
+|$ cat [filename] |
++-----------------+
+
+cat with a filename will print out the contents of the file to the terminal.
+Remember that Linux is case-sensitive so you must type it exactly as you see it.
+
+I have included a file that you can output the the terminal.
+
++-----------------+
+|$ grep [keyword] |
++-----------------+
+
+grep searches a file for words or regular epressions
+
+NOTE: grep must be used in conjunction with other commands and is linked with
+the pipe command ( | ).
+
++-------------------------------+
+|$ cat file1.txt | grep "hello" |
++-------------------------------+
+
+echo is a command that prints a message to the terminal
+
++----------------------+
+|$ echo "Hello World"  |
++----------------------+
+
+echo can also be used in conjunction with operators <, <<
+The > operator will overwrite the file adding your new text
+Whereas the >> operator will append your message to the end
+of the specified file
+
++------------------------------------+
+|$ echo  "Hello World" > [filename]  |
++------------------------------------+
+
+the operators must be used in conjunction with a filename.
+Note: if the filename doesnt exist or if you misspell or forget
+a capital letter the terminal will create a file and add the string of
+text to the file. Typically output files have a .txt extension.
+
+
++------------------------------------+
+|$ echo "Hello World" >> [filename]  |
++------------------------------------+
+
+give these both a try and also make up your own file name then
+call the cat command on it to view your text.
+
++-----------------------------------+
+|$ echo "Hello World" > output.txt  |
++-----------------------------------+
+
+After you have completed those tasks move to the next directory
+
++--------------------------+
+|$ cd ../etc && LinuxTutor |
++--------------------------+

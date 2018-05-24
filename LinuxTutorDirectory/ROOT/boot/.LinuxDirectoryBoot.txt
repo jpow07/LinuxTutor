@@ -1,0 +1,62 @@
+Welcome to the boot Directory!
+
+The boot directory contains bootloader files, kernels, and init files.
+These files are loaded when you turn on your comptuer.
+
+To learn more about Bootloaders go to https://en.wikipedia.org/wiki/Booting#BOOT-LOADER
+To learn more about the Kernel go to https://en.wikipedia.org/wiki/Kernel_(operating_system)
+
+Now we will learn about clear, Man Pages and operators:
+
+By now your terminal is filled with text, to clear out all the text
+run the clear command.
+
++--------------+
+|$ clear       |
++--------------+
+
+Remember: that once you clear the terminal you will have to run
+LinuxTutor agian to view this file.
+ 
++--------------+
+|$ LinuxTutor  |
++--------------+
+
+Man Pages are documentation for the programs on your computer. They can be
+helpful when trying to figure out how a program works.
+
+To view Man Pages you simply type:
+
++--------------+
+|$ man ls      |
++--------------+
+
+This will pull up the entire manual covering the ls command.
+Note: Not every program will have a man page, so you could get an
+error stating : No Manual Entry for [Program name]
+
+Operators are used in conjunction with other programs
+
+We have been using the and operator(&&) which essentially runs the first program
+then it runs the second program. It is equivilent to running the two programs
+separately.
+
++----------------------------------------+
+|$ cd path/to/directory && LinuxTutor    |
++----------------------------------------+
+
+path/to/directory is not a valid directory, but rather a way to express some
+directory on the system. You will typically see this written on common troubleshooting sites
+such as stackoverflow.
+It simply means replace with path/to/directory with a valid path such as ../bin
+
+Another useful operator to keep in mind is the pipe operator ( | )
+
+The pipe operator will take the output of one program and use it as the input for another program.
+We will learn more about this later.
+
+Once you have viewed a couple man pages lets move to the next directory.
+
++-----------------------------+
+|$ cd ../dev && LinuxTutor    |
++-----------------------------+
