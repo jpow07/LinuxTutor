@@ -1,0 +1,71 @@
+#+TITLE: GNU/Linux Tutor
+#+OPTIONS: toc:nil
+* GNU/Linux Tutor
+  This program was designed to help individuals understand how to use GNU/Linux.
+  The aim of this project is to create an interactive terminal program, that
+  allows individuals learn how to use Linux Terminal programs. This program will
+  help users of all levels; However, the goal will be aimed towards beginners at
+  the beginning.
+
+** Milestones
+*** Understanding Documentation
+    I have a book,that I have been reading to understand how the Linux system
+    works. It would be hard to build a tool that educates users, if you dont
+    fully understand how the program works.
+
+    There are also many APIs covering how to manipulate the command line. 
+    Python and C/C++ both offer system calls that rely on pipe commands to execute.
+    
+    Alot of the tutorial could be done with pipe commands however you cannot
+    change directories.
+
+    Create documentation for newcomers, who want to participte in the project.
+
+    DEADLINE: <06-10-2018> 
+*** Determine complexity of the project
+    Create a working project that can interact fully with the terminal, that
+    prints instructions without having to type in the name of the program
+    multiple times. There could be a lot of potential issues, one being the
+    ability to use the terminal to run the program. Two, this might need a
+    terminal emulator to mimic the responses of an actual terminal. Might need a
+    previous emulator and tailor it to my needs. 
+
+    DEADLINE: <06-20-2018>
+
+*** Develop a working demonstration
+    Confirm that this project will work within the terminal by creating a small
+    working sample of commands and executions.
+
+    DEADLINE: <07-01-2018>
+    
+*** Extensibility
+    I want to extract the portions of the code that conduct system calls and
+    create a template for other module classes to call when developing new
+    features.  
+
+    This will allow the program to offer extensibilty without destroying the
+    core functionality. They template will allow other developers to create
+    extensions without causing any major errors. System calls can sometimes
+    cause potential issues, such as "rm -rf /". My API would look to avoid such
+    disasters from happening
+
+    DEADLINE: <07-25-2018>
+
+*** Add Modules -Beginner, Git
+    If I complete the API poriton of the code, I will start developing modules for LinuxTutor.
+
+*** Beginner Module 
+    Beginner Module will allow new users the ability to learn basic linux
+    commands, and give a background about common terminal operations, such as
+    cat somefile.txt | grep "[A-Z, a-z]"
+
+    DEADLINE: <08-21-2018>
+
+*** Git Commands
+    Git module will allow people to learn git without having to read man pages,
+    it will walk through setting up a git page, pushing to the branch, etc. 
+    
+
+
+    
+    
