@@ -1,4 +1,3 @@
-#+TITLE: GNU/Linux Tutor
 #+OPTIONS: toc:nil
 * GNU/Linux Tutor
   This program was designed to help individuals understand how to use GNU/Linux.
