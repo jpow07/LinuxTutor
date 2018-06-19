@@ -1,27 +1,27 @@
+# -*- Makefile -*-
+#Path to google test directory
+GTEST_DIR = gtest/googletest/googletest
 
-#Define some compilation flags
-CPPFLAGS += -isystem $(GTEST_DIR)/include
-CXXFLAGS += -Wall -Wextra -pthread
+GTEST_HEADERS = ${GTEST_DIR}/include
+CPPFLAGS = -isystem ${GTEST_HEADERS}
+CXXFLAGS = -pthread
+DEBUGFLAGS = -Wall -Wextra -g
 
+VPATH = src:tests
 
-GTEST_HEADERS = $(GTEST_DIR)/include/gtest*.h $(GTEST_DIR)/include/gtest/internal/*.h
+all : run-tests release
+	@./run-tests
+	@./release
 
+release : main.o
+	@g++ $^ -o $@ ${DEBUGFLAGS}
 
-all: 
+main.o : main.cpp
+	@g++ $^ -c
 
+run-tests : test.cpp
+	@g++ ${CPPFLAGS} ${CXXFLAGS} $^ gtest/libgtest.a -o $@
 
-
-
-
-all: source tests
-	g++ -isystem ${GTEST_DIR}/include -pthread 
-source: src/main.o
-	g++ src/main.o LinuxTutor
-
-
-
-LinuxTutor: src/main.o
-	g++ src/main.o -o LinuxTutor
-
-main.o: src/main.cpp
-	g++ src/main.cpp -c
+.PHONY : clean
+clean :
+	@rm run-tests release *.o -f 
