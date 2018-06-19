@@ -2,26 +2,39 @@
 #Path to google test directory
 GTEST_DIR = gtest/googletest/googletest
 
-GTEST_HEADERS = ${GTEST_DIR}/include
-CPPFLAGS = -isystem ${GTEST_HEADERS}
-CXXFLAGS = -pthread
+#compiler being used
+COMPILER = g++
+
+#include headers
+GTEST_FLAGS = -isystem ${GTEST_DIR}/include -pthread
+GTEST_LIBRARY = gtest/libgtest.a
 DEBUGFLAGS = -Wall -Wextra -g
 
-VPATH = src:tests
+#path to src directory
+SRC_DIR = src
 
-all : run-tests release
-	@./run-tests
-	@./release
+#tell make to look in these paths if file does not exist in the current directory
+VPATH = tests
 
-release : main.o
-	@g++ $^ -o $@ ${DEBUGFLAGS}
+#run the tests and the main code
+all : unit-tests release
 
+#create the program
+release : src/main.o
+	@${COMPILER} $^ -o $@ ${DEBUGFLAGS}
+	@./$@
+
+#create object files 
 main.o : main.cpp
-	@g++ $^ -c
+	@${COMPILER} $^ -c -o ${SRC_DIR}/$@
 
-run-tests : test.cpp
-	@g++ ${CPPFLAGS} ${CXXFLAGS} $^ gtest/libgtest.a -o $@
+#create the unit-tests
+unit-tests : test.cpp
+	@${COMPILER} ${GTEST_FLAGS} $^ ${GTEST_LIBRARY} -o $@
+	@./$@
 
+#clean the directory and clear the terminal
 .PHONY : clean
 clean :
-	@rm run-tests release *.o -f 
+	@rm unit-tests release ${SRC_DIR}/*.o -f 
+	@clear
