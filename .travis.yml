@@ -1,4 +1,4 @@
 language: cpp
 
-install: make unit-tests
+install: make libgtest.a unit-tests
 
