@@ -5,3 +5,7 @@ script:
 - make
 - ./debug
 - ./unit-tests
+
+
+notifications:
+- email: false
