@@ -3,4 +3,4 @@ compiler: gcc
 
 script:
 - make debug
-- exe/debug
+- ./debug

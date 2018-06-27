@@ -26,7 +26,7 @@ all : libgtest.a unit-tests debug
 
 #create the program
 debug : ${SRC_DIR}/main.o
-	@${COMPILER} $^ -o exe/$@ ${DEBUGFLAGS}
+	@${COMPILER} $^ -o $@ ${DEBUGFLAGS}
 
 #create object files 
 main.o : main.cpp
