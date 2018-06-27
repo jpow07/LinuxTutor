@@ -1,2 +1,4 @@
-language: c++
+language: cpp
+
+install: make unit-tests
 
