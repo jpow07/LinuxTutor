@@ -2,7 +2,7 @@ language: cpp
 compiler: gcc
 
 script: make debug
-
+        exe/debug
 
 
 
