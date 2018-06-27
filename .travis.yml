@@ -1,8 +1,9 @@
 language: cpp
 compiler: gcc
 
-script: make debug
-        exe/debug
+script:
+- make debug
+- exe/debug
 
 
 
