@@ -1,6 +1,8 @@
 language: cpp
+compiler: gcc
 
-install: true
+script: make unit-tests
 
-make unit-tests
+
+
 
