@@ -15,7 +15,7 @@ DEBUGFLAGS = -Wall -Wextra -g -pedantic-errors
 SRC_DIR = src
 
 #tell make to look in these paths if file does not exist in the current directory
-VPATH = tests: gtest ${GTEST_DIR} ${GTEST_DIR}/src 
+VPATH = tests: gtest:${GTEST_DIR}:${GTEST_DIR}/src:${SRC_DIR} 
 
 #run the tests and the main code
 all : libgtest.a unit-tests debug 
@@ -52,7 +52,7 @@ unit-tests : test.cpp
 #clean the directory and clear the terminal
 .PHONY : clean
 clean :
-	@rm exe/unit-tests exe/debug ${SRC_DIR}/*.o -f gtest/libgtest.a gtest/gtest-all.o
+	@rm exe/unit-tests exe/debug ${SRC_DIR}/*.o -f
 	@clear
 
 
