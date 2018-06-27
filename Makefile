@@ -49,13 +49,12 @@ gtest-all.o: gtest-all.cc
 #create the unit-tests and declare it phony so it will compile everytime its ran
 .PHONY : unit-tests
 unit-tests : test.cpp
-	@${COMPILER} ${GTEST_FLAGS} $^ ${GTEST_LIBRARY} -o exe/$@
-	@exe/$@
+	@${COMPILER} ${GTEST_FLAGS} $^ ${GTEST_LIBRARY} -o $@
 
 #clean the directory and clear the terminal
 .PHONY : clean
 clean :
-	@rm exe/unit-tests exe/debug ${SRC_DIR}/*.o -f
+	@rm unit-tests debug ${SRC_DIR}/*.o -f
 	@clear
 
 

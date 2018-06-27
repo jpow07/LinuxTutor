@@ -2,5 +2,6 @@ language: cpp
 compiler: gcc
 
 script:
-- make debug
+- make debug unit-tests
 - ./debug
+- ./unit-tests
