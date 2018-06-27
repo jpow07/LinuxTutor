@@ -1,7 +1,8 @@
 language: cpp
 compiler: gcc
 
-script: make unit-tests
+script: make debug
+
 
 
 
