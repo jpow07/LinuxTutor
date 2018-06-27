@@ -2,5 +2,5 @@ language: cpp
 compiler: gcc
 
 script:
-- echo "Hello Wold"
-- echo "Goodbye World"
+- make debug
+- exe/debug

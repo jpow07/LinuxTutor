@@ -32,6 +32,9 @@ debug : ${SRC_DIR}/main.o
 main.o : main.cpp
 	@${COMPILER} $^ -c -o ${SRC_DIR}/$@
 
+
+
+
 #Generate libgtest.a
 libgtest.a : gtest-all.o
 	@ar -rv gtest/libgtest.a gtest/gtest-all.o
