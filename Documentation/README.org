@@ -1,0 +1,7 @@
+* HTML PREVIEW
+  I have exported all my documentations notes to HTML. To preview the documentation go to:
+  #+BEGIN_SRC 
+  htmlpreview.github.com
+  #+END_SRC
+
+  Copy the url address where the documentation you are trying to view is located and paste it into the bar. This will preview the documentation. 
