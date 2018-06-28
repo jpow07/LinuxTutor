@@ -1,8 +1,12 @@
+os: linux
+dist: trusty
+sudo: false
+
 language: cpp
 compiler: gcc
 
 script:
-- make
+- make all
 - ./debug
 - ./unit-tests
 
