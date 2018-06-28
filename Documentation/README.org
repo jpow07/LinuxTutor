@@ -1,3 +1,3 @@
 * HTML PREVIEW
-  I have exported all my documentations notes to HTML, to view them copy the url to the documentation you wish to view and paste it into the [[http://htmlpreview.github.io/#org516b327][html viewer]].   
+  I have exported all my documentations notes to HTML. To view them, copy the url to the documentation you wish to view and paste it into the [[http://htmlpreview.github.io/#org516b327][html viewer]].   
 
