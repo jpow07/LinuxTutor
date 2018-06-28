@@ -1,0 +1,993 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="makefile" xml:lang="makefile">
+<head>
+<!-- 2018-06-25 Mon 11:44 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Make</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Jordan Powell" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/style1.css" />
+
+<script type="text/javascript" src="https://orgmode.org/org-info.js">
+/**
+ *
+ * @source: https://orgmode.org/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in https://orgmode.org/org-info.js.
+ *
+ * Copyright (C) 2012-2018 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in https://orgmode.org/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "3");
+org_html_manager.set("LINK_HOME", "");
+org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LOCAL_TOC", "1");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "underline");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "info");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Make</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org479ef71">Make</a></li>
+<li><a href="#org7c95d86">Makefile</a>
+<ul>
+<li><a href="#org99c47fd">Rules</a></li>
+<li><a href="#org0beebfa">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#org2284cd2">First Makefile</a>
+<ul>
+<li><a href="#orgd736326">Comments</a></li>
+<li><a href="#org0efb848">Refactoring</a></li>
+</ul>
+</li>
+<li><a href="#orga5d5b96">Second Makefile</a>
+<ul>
+<li><a href="#orgee9da05">Explicit</a></li>
+<li><a href="#orgef3dba6">Implicit</a></li>
+<li><a href="#org3c5cc26">Refactoring</a></li>
+</ul>
+</li>
+<li><a href="#org43a4d3c">Third Makefile</a>
+<ul>
+<li><a href="#org8854d6e">Variable Definition</a></li>
+<li><a href="#org27eb187">Automatic Variables</a></li>
+<li><a href="#orgcf4d559">Refactoring</a></li>
+</ul>
+</li>
+<li><a href="#org516b327">Fourth Makefile</a>
+<ul>
+<li><a href="#orge758bb1">Phony Targets</a></li>
+</ul>
+</li>
+<li><a href="#orgdb4b341">Fifth Makefile</a>
+<ul>
+<li><a href="#orge004a1a">Line Splitting</a></li>
+<li><a href="#orgb71892d">Refactoring</a></li>
+</ul>
+</li>
+<li><a href="#org8a2e068">My Project Makefile</a>
+<ul>
+<li><a href="#orge8765de">Directories</a></li>
+<li><a href="#org97d9f42">Refactoring</a></li>
+<li><a href="#org9ea8614">Suppressing the recipe commands</a></li>
+</ul>
+</li>
+<li><a href="#org03aa637">References</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org479ef71" class="outline-2">
+<h2 id="org479ef71">Make</h2>
+<div class="outline-text-2" id="text-org479ef71">
+<ul class="org-ul">
+<li>is a build system, or utility, used for compiling and linking large programs.</li>
+<li>is generally used for C/C++ programs; however, it can be used for other programs as well.</li>
+<li>works by reading a set of instructions, called rules, from a makefile and updates a program based on a files timestamp.</li>
+<li>if a target is older than its prerequesite than make will refresh/recompile the target.</li>
+</ul>
+
+<p>
+There are many distributions of make, and every distribution has some differences, but generally most things remain the same. Just be sure to use the correct documentation for the distribution you are using. 
+</p>
+
+<p>
+Some other make utilities are:
+</p>
+<ul class="org-ul">
+<li>dmake</li>
+<li>BSD make</li>
+<li>GNU make</li>
+<li>Microsoft nmake</li>
+</ul>
+<p>
+and more.
+</p>
+
+<p>
+make can be run in a shell with the following command:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">$ make [all]
+</pre>
+</div>
+
+<p>
+[all] is implicitly called when not given a specific target, if your makefile does not have an all target then the makefile will execute the first rule in the makefile.
+</p>
+
+<p>
+When running make you can explicitly call a target by appending it to the make command.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">$ make clean
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7c95d86" class="outline-2">
+<h2 id="org7c95d86">Makefile</h2>
+<div class="outline-text-2" id="text-org7c95d86">
+<ul class="org-ul">
+<li>A makefile is a text document, with the file extension .mk, but a file extension is not required if you name the file 'makefile' or 'Makefile'</li>
+</ul>
+</div>
+
+<div id="outline-container-org99c47fd" class="outline-3">
+<h3 id="org99c47fd">Rules</h3>
+<div class="outline-text-3" id="text-org99c47fd">
+<p>
+A rule contains a target, prerequisite, and a recipe.
+</p>
+<ul class="org-ul">
+<li>The target is usually the name of a file that is generated from its dependencies, but can also be an action that carries out a command without creating a file, called Phony targets.</li>
+<li>The prerequisite is a dependency that is required by the target in order to be created.</li>
+<li>The recipe is typically how the prerequisites are used to create the target, but this can be any shell command. Recipes are executed by the terminal or shell.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0beebfa" class="outline-3">
+<h3 id="org0beebfa">Syntax</h3>
+<div class="outline-text-3" id="text-org0beebfa">
+<p>
+A rule can be written on one line: 
+</p>
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">target</span> : prerequisite; recipe
+</pre>
+</div>
+
+<p>
+However, it is typically written in this form:
+</p>
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">target ...</span> : prerequesite
+&lt;tab&gt;recipe
+&lt;tab&gt;...
+&lt;tab&gt;...
+</pre>
+</div>
+
+<p>
+Note: The recipe is preceeded with a tab character, not by spaces. 
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2284cd2" class="outline-2">
+<h2 id="org2284cd2">First Makefile</h2>
+<div class="outline-text-2" id="text-org2284cd2">
+<p>
+The simplest example of a makefile will contain one rule. This rule
+is compiling a simple C++ program.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">myProgram</span> : main.cpp
+      g++ main.cpp -o myProgram
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd736326" class="outline-3">
+<h3 id="orgd736326">Comments</h3>
+<div class="outline-text-3" id="text-orgd736326">
+<p>
+A '#' is a comment in a makefile and can be used throughout a makefile, except within a variable declaration, because then it will be evaluated as part of a string.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0efb848" class="outline-3">
+<h3 id="org0efb848">Refactoring</h3>
+<div class="outline-text-3" id="text-org0efb848">
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">This is a makefile comment</span>
+
+<span style="color: #49639a;">myProgram</span> : main.cpp
+        g++ main.cpp -o myProgram
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga5d5b96" class="outline-2">
+<h2 id="orga5d5b96">Second Makefile</h2>
+<div class="outline-text-2" id="text-orga5d5b96">
+<p>
+This makefile will tell make how to compile a C++ program, but will separate it into two parts.
+</p>
+
+
+<p>
+The makefile would look like this:
+</p>
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">myProgram</span> : main.o
+       g++ main.o -o myProgram
+
+<span style="color: #49639a;">main.o</span> : main.cpp
+       g++ main.cpp -c
+</pre>
+</div>
+
+<p>
+Before <i>make</i> can generate myProgram it requires the main.o object file. 
+Therefore, it must search for the main.o target.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">main.o</span> : main.cpp
+       g++ main.o -c
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>main.o is the target.</li>
+<li>main.cpp is the prerequesite needed to generate the object file.</li>
+<li>The recipe is a gcc command that creates object files from a .cpp file.</li>
+</ul>
+
+<p>
+After the object file has been created, it can generate the myProgram target, which is the final step of the process. 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">myProgram</span> : main.o
+        g++ main.cpp -o myProgram 
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>myProgram is the target, as well as the name of the program.</li>
+<li>main.o is the prerequesite that myProgram depends on in order to be created.</li>
+<li>The recipe is the steps required to compile main.cpp into an object file.</li>
+</ul>
+</div>
+
+<div id="outline-container-orgee9da05" class="outline-3">
+<h3 id="orgee9da05">Explicit</h3>
+<div class="outline-text-3" id="text-orgee9da05">
+<p>
+Explicit rule says when and how to remake one or more files into targets. 
+</p>
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">myProgram</span> : main.o
+        g++ main.o -o myProgram
+
+<span style="color: #49639a;">main.o</span> : main.cpp
+       g++ main.cpp -c
+</pre>
+</div>
+<p>
+myProgram and main.o are both explicit targets, because they are both stated.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgef3dba6" class="outline-3">
+<h3 id="orgef3dba6">Implicit</h3>
+<div class="outline-text-3" id="text-orgef3dba6">
+<p>
+Implicit rules can determine a how to generate a target when no instructions are given
+</p>
+
+<p>
+A target can also implicitly determine its prerequisites, based of the name of target.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">myProgram</span> : main.o
+       g++ main.o -o myProgram
+
+<span style="color: #49639a;">main.o</span> :
+       g++ main.cpp -c
+
+</pre>
+</div>
+<p>
+or
+</p>
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">myProgram</span>: main.o
+        g++ main.c -o myProgram
+
+</pre>
+</div>
+
+<p>
+myProgram is built from main.o and because main.o is not explicitly given make is capable of generating main.o from main.cpp without being explicitly told what to do.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3c5cc26" class="outline-3">
+<h3 id="org3c5cc26">Refactoring</h3>
+<div class="outline-text-3" id="text-org3c5cc26">
+<div class="org-src-container">
+<pre class="src src-makefile">
+<span style="color: #49639a;">myProgram</span> : main.o
+       g++ main.o -o myProgram
+
+<span style="color: #49639a;">main.o</span> : 
+       g++ main.cpp -c
+
+</pre>
+</div>
+
+<p>
+or
+</p>
+
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">myProgram</span> : main.o
+        g++ main.o -o myProgram
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org43a4d3c" class="outline-2">
+<h2 id="org43a4d3c">Third Makefile</h2>
+<div class="outline-text-2" id="text-org43a4d3c">
+<p>
+A more advanced makefile will contain multiple files, programs or implementations.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">myProgram</span> : main.o fact.o 
+       g++ main.o other.o -o myProgram
+
+<span style="color: #49639a;">main.o</span> : main.cpp fact.h
+       g++ main.cpp -c
+
+<span style="color: #49639a;">other.o</span> : fact.cpp fact.h
+       g++ fact.cpp -c
+
+</pre>
+</div>
+
+<p>
+The benefits of using a makefile in this form is it allows a program to be compiled in separate parts, which saves time when having to recompile a program. If changes are made to the fact.cpp file, when make is run the second time it will only recompile fact.cpp file and generate a new object file, rather than recompiling the entire program.
+</p>
+
+<p>
+make determines if a target needs to be updated based on the targets timestamp versus its prerequisites timestamp. 
+</p>
+</div>
+
+<div id="outline-container-org8854d6e" class="outline-3">
+<h3 id="org8854d6e">Variable Definition</h3>
+<div class="outline-text-3" id="text-org8854d6e">
+<p>
+A variable is a line that specifies a string of text that can be supplemented into a rule.
+</p>
+
+<p>
+Variables are not allowed to contain ':', '#', '=', or whitespace(' '). When using variables in recipe, be sure that it can be evaluated by the shell as well.
+</p>
+
+<p>
+Note: in other distributions of make, Variables are sometimes referred to as macros.
+</p>
+
+<p>
+Variables are declared like:
+</p>
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #3b5999;">OBJECTS</span> = main.o other.o
+<span style="color: #3b5999;">compiler</span> = g++
+
+<span style="color: #49639a;">myProgram</span> : ${<span style="color: #3b5999;">OBJECTS</span>}
+        ${<span style="color: #3b5999;">compiler</span>} ${<span style="color: #3b5999;">OBJECTS</span>} -o myProgram
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org27eb187" class="outline-3">
+<h3 id="org27eb187">Automatic Variables</h3>
+<div class="outline-text-3" id="text-org27eb187">
+<p>
+Automatic variables are built-in variables. Automatic variables consist of a dollar sign and another character. Such as $^, $@, $&lt;
+</p>
+
+<p>
+Some commonly used automatic variables are:
+</p>
+
+<ul class="org-ul">
+<li>$@ will evaluate to the name of the target</li>
+<li>$^ will evaluate to the name of the prerequisites</li>
+<li>$&lt; will evaluate to the name of the first prerequisite</li>
+<li>$* will evaluate to the name of the prerequsite when its implicitly called, but must be given an extension.</li>
+</ul>
+
+<p>
+This can be used to shorten 
+</p>
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">myProgram</span> : main.o
+        g++ main.cpp -o <span style="color: #49639a;">$</span><span style="color: #49639a;">@</span>
+
+<span style="color: #49639a;">main.o</span> : main.cpp 
+        g++ $<span style="color: #49639a;">^</span> -c
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcf4d559" class="outline-3">
+<h3 id="orgcf4d559">Refactoring</h3>
+<div class="outline-text-3" id="text-orgcf4d559">
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #3b5999;">OBJECTS</span> = main.o other.o
+<span style="color: #3b5999;">compiler</span> = g++
+
+<span style="color: #49639a;">myProgram</span> : ${<span style="color: #3b5999;">OBJECTS</span>}
+        ${<span style="color: #3b5999;">compiler</span>} $<span style="color: #49639a;">^</span> -o <span style="color: #49639a;">$</span><span style="color: #49639a;">@</span>
+
+<span style="color: #49639a;">${</span><span style="color: #49639a;">OBJECTS</span><span style="color: #49639a;">}</span> : main.cpp fact.cpp fact.h 
+        ${<span style="color: #3b5999;">compiler</span>} $<span style="color: #49639a;">^</span> -c
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org516b327" class="outline-2">
+<h2 id="org516b327">Fourth Makefile</h2>
+<div class="outline-text-2" id="text-org516b327">
+<p>
+This makefile will contain Phony targets.
+</p>
+</div>
+<div id="outline-container-orge758bb1" class="outline-3">
+<h3 id="orge758bb1">Phony Targets</h3>
+<div class="outline-text-3" id="text-orge758bb1">
+<p>
+Phony targets can be used to force commands to run everytime, or run a command whose implementation is separate from a file name.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">.PHONY</span> : myProgram
+<span style="color: #49639a;">myProgram</span> : main.o
+        g++ main.o -o myProgram
+
+<span style="color: #49639a;">.PHONY</span> : clean
+<span style="color: #49639a;">clean</span> : 
+        rm *.o myProgram
+
+</pre>
+</div>
+
+<p>
+Clean is a typical Phony Target, when it runs it will clean up the directory removing object files and deleting the executable myProgram.
+</p>
+
+<p>
+myProgram can now be forced to run multiple times, regardless if its up to date.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdb4b341" class="outline-2">
+<h2 id="orgdb4b341">Fifth Makefile</h2>
+<div class="outline-text-2" id="text-orgdb4b341">
+<p>
+This makefile will not compile any programs. This is really powerful tool for building docker containers, cleaning directories, etc.
+</p>
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">.PHONY</span> : clean
+<span style="color: #49639a;">clean</span> :
+       rm -f ../first/*.o ../first/myProgram ../second/*.o ../second/myProgram ../third/*.o ../third/myProgram ../fourth/*.o ../fourth/myProgram
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge004a1a" class="outline-3">
+<h3 id="orge004a1a">Line Splitting</h3>
+<div class="outline-text-3" id="text-orge004a1a">
+<p>
+Line splitting can be used to make long recipes more readable by adding a backslash character to the end of the line before moving to the next line.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb71892d" class="outline-3">
+<h3 id="orgb71892d">Refactoring</h3>
+<div class="outline-text-3" id="text-orgb71892d">
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #49639a;">.PHONY</span> : clean
+<span style="color: #49639a;">clean</span> :
+      rm -f ../first/*.o ../first/myProgram \
+      ../second/*.o ../second/myProgram \
+      ../third/*.o ../third/myProgram \
+      ../fourth/*.o ../fourth/myProgram
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8a2e068" class="outline-2">
+<h2 id="org8a2e068">My Project Makefile</h2>
+<div class="outline-text-2" id="text-org8a2e068">
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #acb0b8;"># </span><span style="color: #acb0b8;">-*- Makefile -*-</span>
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">Path to google test directory</span>
+<span style="color: #3b5999;">GTEST_DIR</span> = gtest/googletest/googletest
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">compiler being used</span>
+<span style="color: #3b5999;">COMPILER</span> = g++
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">include headers</span>
+<span style="color: #3b5999;">GTEST_FLAGS</span> = -isystem ${<span style="color: #3b5999;">GTEST_DIR</span>}/include -pthread
+<span style="color: #3b5999;">GTEST_LIBRARY</span> = gtest/libgtest.a
+<span style="color: #3b5999;">DEBUGFLAGS</span> = -Wall -Wextra -g -pedantic-errors
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">path to src directory</span>
+<span style="color: #3b5999;">SRC_DIR</span> = src
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">tell make to look in these paths if file does not exist in the current directory</span>
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">run the tests and the main code</span>
+<span style="color: #49639a;">all</span> : libgtest.a unit-tests debug 
+
+<span style="color: #acb0b8;"># </span><span style="color: #acb0b8;">Release version that will support compiler optimization</span>
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">release : </span>
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">create the program</span>
+<span style="color: #49639a;">debug</span> : src/main.o
+        <span style="color: #931027;">@</span>${<span style="color: #3b5999;">COMPILER</span>} $<span style="color: #49639a;">^</span> -o exe/<span style="color: #49639a;">$</span><span style="color: #49639a;">@</span> ${<span style="color: #3b5999;">DEBUGFLAGS</span>}
+        <span style="color: #931027;">@</span>exe/<span style="color: #49639a;">$</span><span style="color: #49639a;">@</span>
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">create object files </span>
+<span style="color: #49639a;">main.o</span> : src/main.cpp
+        <span style="color: #931027;">@</span>${<span style="color: #3b5999;">COMPILER</span>} $<span style="color: #49639a;">^</span> -c -o ${<span style="color: #3b5999;">SRC_DIR</span>}/<span style="color: #49639a;">$</span><span style="color: #49639a;">@</span>
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">Generate libgtest.a</span>
+<span style="color: #49639a;">libgtest.a</span> : gtest/gtest-all.o
+        <span style="color: #931027;">@</span>ar -rv gtest/libgtest.a gtest/gtest-all.o
+        <span style="color: #931027;">@</span>echo Build Successful!
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">generate object file that is required for building library</span>
+<span style="color: #49639a;">gtest-all.o</span>: ${<span style="color: #3b5999;">GTEST_DIR</span>}/src/gtest-all.cc
+        <span style="color: #931027;">@</span>${<span style="color: #3b5999;">CXX</span>} -isystem ${<span style="color: #3b5999;">GTEST_DIR</span>}/include -I${<span style="color: #3b5999;">GTEST_DIR</span>} -pthread -c $<span style="color: #49639a;">^</span> -o gtest/<span style="color: #49639a;">$</span><span style="color: #49639a;">@</span>
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">create the unit-tests and declare it phony so it will compile everytime its ran</span>
+<span style="color: #49639a;">.PHONY</span> : unit-tests
+<span style="color: #49639a;">unit-tests</span> : test.cpp
+        <span style="color: #931027;">@</span>${<span style="color: #3b5999;">COMPILER</span>} ${<span style="color: #3b5999;">GTEST_FLAGS</span>} $<span style="color: #49639a;">^</span> ${<span style="color: #3b5999;">GTEST_LIBRARY</span>} -o exe/<span style="color: #49639a;">$</span><span style="color: #49639a;">@</span>
+        <span style="color: #931027;">@</span>exe/<span style="color: #49639a;">$</span><span style="color: #49639a;">@</span>
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">clean the directory and clear the terminal</span>
+<span style="color: #49639a;">.PHONY</span> : clean
+<span style="color: #49639a;">clean</span> :
+        <span style="color: #931027;">@</span>rm exe/unit-tests exe/debug ${<span style="color: #3b5999;">SRC_DIR</span>}/*.o -f gtest/libgtest.a gtest/gtest-all.o
+        <span style="color: #931027;">@</span>clear
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge8765de" class="outline-3">
+<h3 id="orge8765de">Directories</h3>
+<div class="outline-text-3" id="text-orge8765de">
+<p>
+   Projects with files contained in different directories must be explicity written in the rules, unless you use a variable such as VPATH.
+   VPATH tells make where to find files; however, this only applies to files in the target and prerequisite, NOT to files in the recipe. This is why automatic variables are so important. 
+directory locations can be separated by a ':' or a space 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #3b5999;">VPATH</span> = src:${<span style="color: #3b5999;">GTEST_DIR</span>} ${<span style="color: #3b5999;">GTEST_DIR</span>}/include:${<span style="color: #3b5999;">GTEST_DIR</span>}/src
+</pre>
+</div>
+
+<p>
+This tells make what directories to check when a targets and prerequisites directory are not explicitly stated or in the current directory.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org97d9f42" class="outline-3">
+<h3 id="org97d9f42">Refactoring</h3>
+<div class="outline-text-3" id="text-org97d9f42">
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #acb0b8;"># </span><span style="color: #acb0b8;">-*- Makefile -*-</span>
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">Path to google test directory</span>
+<span style="color: #3b5999;">GTEST_DIR</span> = gtest/googletest/googletest
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">compiler being used</span>
+<span style="color: #3b5999;">COMPILER</span> = g++
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">include headers</span>
+<span style="color: #3b5999;">GTEST_FLAGS</span> = -isystem ${<span style="color: #3b5999;">GTEST_DIR</span>}/include -pthread
+<span style="color: #3b5999;">GTEST_LIBRARY</span> = gtest/libgtest.a
+<span style="color: #3b5999;">DEBUGFLAGS</span> = -Wall -Wextra -g -pedantic-errors
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">path to src directory</span>
+<span style="color: #3b5999;">SRC_DIR</span> = src
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">tell make to look in these paths if file does not exist in the current directory</span>
+<span style="color: #3b5999;">VPATH</span> = tests: gtest ${<span style="color: #3b5999;">GTEST_DIR</span>} ${<span style="color: #3b5999;">GTEST_DIR</span>}/src 
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">run the tests and the main code</span>
+<span style="color: #49639a;">all</span> : libgtest.a unit-tests debug 
+
+<span style="color: #acb0b8;"># </span><span style="color: #acb0b8;">Release version that will support compiler optimization</span>
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">release : </span>
+
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">create the program</span>
+<span style="color: #49639a;">debug</span> : ${<span style="color: #3b5999;">SRC_DIR</span>}/main.o
+        <span style="color: #931027;">@</span>${<span style="color: #3b5999;">COMPILER</span>} $<span style="color: #49639a;">^</span> -o exe/<span style="color: #49639a;">$</span><span style="color: #49639a;">@</span> ${<span style="color: #3b5999;">DEBUGFLAGS</span>}
+        <span style="color: #931027;">@</span>exe/<span style="color: #49639a;">$</span><span style="color: #49639a;">@</span>
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">create object files </span>
+<span style="color: #49639a;">main.o</span> : main.cpp
+        <span style="color: #931027;">@</span>${<span style="color: #3b5999;">COMPILER</span>} $<span style="color: #49639a;">^</span> -c -o ${<span style="color: #3b5999;">SRC_DIR</span>}/<span style="color: #49639a;">$</span><span style="color: #49639a;">@</span>
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">Generate libgtest.a</span>
+<span style="color: #49639a;">libgtest.a</span> : gtest-all.o
+        <span style="color: #931027;">@</span>ar -rv gtest/libgtest.a gtest/gtest-all.o
+        <span style="color: #931027;">@</span>echo Build Successful!
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">generate object file that is required for building library</span>
+<span style="color: #49639a;">gtest-all.o</span>: gtest-all.cc
+        <span style="color: #931027;">@</span>${<span style="color: #3b5999;">CXX</span>} -isystem ${<span style="color: #3b5999;">GTEST_DIR</span>}/include -I${<span style="color: #3b5999;">GTEST_DIR</span>} -pthread -c $<span style="color: #49639a;">^</span> -o gtest/<span style="color: #49639a;">$</span><span style="color: #49639a;">@</span>
+
+
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">create the unit-tests and declare it phony so it will compile everytime its ran</span>
+<span style="color: #49639a;">.PHONY</span> : unit-tests
+<span style="color: #49639a;">unit-tests</span> : test.cpp
+        <span style="color: #931027;">@</span>${<span style="color: #3b5999;">COMPILER</span>} ${<span style="color: #3b5999;">GTEST_FLAGS</span>} $<span style="color: #49639a;">^</span> ${<span style="color: #3b5999;">GTEST_LIBRARY</span>} -o exe/<span style="color: #49639a;">$</span><span style="color: #49639a;">@</span>
+        <span style="color: #931027;">@</span>exe/<span style="color: #49639a;">$</span><span style="color: #49639a;">@</span>
+
+<span style="color: #acb0b8;">#</span><span style="color: #acb0b8;">clean the directory and clear the terminal</span>
+<span style="color: #49639a;">.PHONY</span> : clean
+<span style="color: #49639a;">clean</span> :
+        <span style="color: #931027;">@</span>rm exe/unit-tests exe/debug ${<span style="color: #3b5999;">SRC_DIR</span>}/*.o -f gtest/libgtest.a gtest/gtest-all.o
+        <span style="color: #931027;">@</span>clear
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9ea8614" class="outline-3">
+<h3 id="org9ea8614">Suppressing the recipe commands</h3>
+<div class="outline-text-3" id="text-org9ea8614">
+<p>
+When a command in the recipe is prefixed with '@' then the command will be run but the message will be suppressed.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org03aa637" class="outline-2">
+<h2 id="org03aa637">References</h2>
+<div class="outline-text-2" id="text-org03aa637">
+<ul class="org-ul">
+<li><a href="https://www.gnu.org/software/make/manual/make.html#Phony-Targets">GNU Make</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Make_(software)">Make Wiki</a></li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
