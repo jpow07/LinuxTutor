@@ -5,8 +5,9 @@ sudo: false
 language: cpp
 compiler: gcc
 
-before_script:
-- make libgtest.a
+
+before_script: 
+- make VERBOSE=1
 
 script:
 - make all
