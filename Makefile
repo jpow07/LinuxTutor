@@ -1,7 +1,7 @@
 # -*- Makefile -*-
 
 #Path to google test directory
-GTEST_DIR = gtest/googletest/googletest
+GTEST_DIR = googletest
 
 #compiler being used
 COMPILER = g++
@@ -33,16 +33,18 @@ main.o : main.cpp
 	@${COMPILER} $^ -c -o ${SRC_DIR}/$@
 
 
-
+#build library target
+.PHONY : build_libraries
+build_libraries : libgtest.a
 
 #Generate libgtest.a
 libgtest.a : gtest-all.o
-	@ar -rv gtest/libgtest.a gtest/gtest-all.o
+	@ar -rv ${GTEST_DIR}/libgtest.a ${GTEST_DIR}/gtest-all.o
 	@echo Build Successful!
 
 #generate object file that is required for building library
 gtest-all.o: gtest-all.cc
-	@${CXX} -isystem ${GTEST_DIR}/include -I${GTEST_DIR} -pthread -c $^ -o gtest/$@
+	@${CXX} -isystem ${GTEST_DIR}/include -I${GTEST_DIR} -pthread -c $^ -o ${GTEST_DIR}/$@
 
 
 
