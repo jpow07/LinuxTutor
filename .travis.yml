@@ -7,11 +7,10 @@ compiler: gcc
 
 
 before_script: 
-- make VERBOSE=1
+- make VERBOSE=1 -k
 
 script:
 - make all
-- ./unit-tests
 - ./debug
 
 
