@@ -5,8 +5,13 @@ sudo: false
 language: cpp
 compiler: gcc
 
-script:
+before_script:
 - make libgtest.a
+
+script:
+- make all
+- ./unit-tests
+- ./debug
 
 
 notifications:
