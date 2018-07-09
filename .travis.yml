@@ -6,9 +6,7 @@ language: cpp
 compiler: gcc
 
 script:
-- make all
-- ./debug
-- ./unit-tests
+- make libgtest.a
 
 
 notifications:
