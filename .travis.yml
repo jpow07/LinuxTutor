@@ -7,7 +7,7 @@ compiler: gcc
 
 
 before_script: 
-- make build-library
+- make build-libraries
 
 script:
 - make debug
