@@ -43,7 +43,7 @@ libgtest.a : gtest-all.o
 	@echo Build Successful!
 
 #generate object file that is required for building library
-gtest-all.o: gtest-all.cc
+gtest-all.o: ${GTEST_DIR}/src/gtest-all.cc
 	@${CXX} -isystem ${GTEST_DIR}/include -I${GTEST_DIR} -pthread -c $^ -o ${GTEST_DIR}/$@
 
 
