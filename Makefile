@@ -58,6 +58,7 @@ unit-tests : test.cpp
 clean :
 	@rm unit-tests debug ${SRC_DIR}/*.o -f
 	@clear
+	@rm ${GTEST_DIR}/libgtest.a
 
 
 
