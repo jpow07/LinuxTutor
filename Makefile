@@ -1,7 +1,7 @@
 # -*- Makefile -*-
 
 #Path to google test directory
-GTEST_DIR = googletest
+GTEST_DIR = googletest/googletest
 
 #compiler being used
 COMPILER = g++
@@ -15,7 +15,7 @@ DEBUGFLAGS = -Wall -Wextra -g -pedantic-errors
 SRC_DIR = src
 
 #tell make to look in these paths if file does not exist in the current directory
-VPATH = tests: gtest:${GTEST_DIR}:${GTEST_DIR}/src:${SRC_DIR} 
+VPATH = tests:${GTEST_DIR}:${GTEST_DIR}/src:${SRC_DIR} 
 
 #run the tests and the main code
 all : libgtest.a unit-tests debug 
