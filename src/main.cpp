@@ -2,6 +2,13 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+namespace color {
+  std::string blue = "\e[34m";
+  std::string end = "\e[0m";
+  
+
+}
+
 int main(){
   //create fork process
   //pid_t pid = fork();
@@ -14,7 +21,7 @@ int main(){
   
     
     //Print prompt
-    std::cout << "\e[34musername\e[0m\e[33m@\e[0m\e[31mhostname \e[0m " << get_current_dir_name() << " $ ";
+    std::cout << "\e[34musername\e[0m\e[33m@\e[0m\e[31mhostname \e[0m " << color::blue << get_current_dir_name() << color::end << " $ ";
     
     //read input
     std::cin >> command;
