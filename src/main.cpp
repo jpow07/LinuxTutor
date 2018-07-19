@@ -11,10 +11,11 @@ int main(){
   int returnCode;
 
   do{
-
+  
+    
     //Print prompt
-    std::cout << "username@hostname " << " $ ";
-
+    std::cout << "\e[34musername\e[0m\e[33m@\e[0m\e[31mhostname \e[0m " << get_current_dir_name() << " $ ";
+    
     //read input
     std::cin >> command;
 
