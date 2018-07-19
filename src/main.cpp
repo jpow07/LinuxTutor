@@ -4,18 +4,34 @@
 
 int main(){
   //create fork process
-  pid_t pid = fork();
+  //pid_t pid = fork();
+  
   //store command
   std::string command;
   int returnCode;
 
-  while (std::cin >> command) {
+  do{
 
-    if (command == "exit")
-      break;
-    returnCode = system(command.c_str());
+    //Print prompt
+    std::cout << "username@hostname " << " $ ";
+
+    //read input
+    std::cin >> command;
+
+    if(command == "cd") {
+      std::cin >> command;
+      chdir(command.c_str());
+    }else {
+      system(command.c_str());
+    }
+
     
-  }
+  }while (command != "exit");
+
+  //exit the program
+  exit(1);
+
+  
 
   exit(1);
   
