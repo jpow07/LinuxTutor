@@ -1,18 +1,17 @@
 #include <iostream>
 #include <unistd.h>
 #include <stdlib.h>
+#include "color.h"
 
-namespace color {
-  std::string blue = "\e[34m";
-  std::string end = "\e[0m";
-  
-
-}
 
 int main(){
   //create fork process
   //pid_t pid = fork();
-  
+
+  std::cout << fgColor::ORANGE << bgColor::RED << "Believe it!" << std::endl;
+  return 0;
+
+  /*
   //store command
   std::string command;
   int returnCode;
@@ -44,4 +43,5 @@ int main(){
   exit(1);
   
   return 0;
+  */
 }
