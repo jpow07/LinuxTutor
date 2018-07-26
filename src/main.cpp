@@ -1,26 +1,22 @@
 #include <iostream>
 #include <unistd.h>
 #include <stdlib.h>
-#include "color.h"
+#include "color.hpp"
 
 
 int main(){
-  //create fork process
-  //pid_t pid = fork();
-
-  std::cout << fgColor::ORANGE << bgColor::RED << "Believe it!" << std::endl;
-  return 0;
-
-  /*
   //store command
   std::string command;
   int returnCode;
+
+  std::cout << "User ID: " << getuid() << std::endl;
+  std::cout << "Process ID: " << getpid() << std::endl;
 
   do{
   
     
     //Print prompt
-    std::cout << "\e[34musername\e[0m\e[33m@\e[0m\e[31mhostname \e[0m " << color::blue << get_current_dir_name() << color::end << " $ ";
+    std::cout << fgColor::ORANGE << "username" << fgColor::GREEN << "@hostname " << fgColor::RED << get_current_dir_name() << fgColor::GREY << " $ ";
     
     //read input
     std::cin >> command;
@@ -37,11 +33,6 @@ int main(){
 
   //exit the program
   exit(1);
-
-  
-
-  exit(1);
   
   return 0;
-  */
 }
