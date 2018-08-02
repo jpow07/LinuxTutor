@@ -1,42 +1,13 @@
 #+OPTIONS: toc:nil
-* GNU/Linux Tutor
-  This program was designed to help individuals understand how to use GNU/Linux.
+* Linux Tutor
+  This program was designed to help individuals understand how to use Linux.
   The aim of this project is to create an interactive terminal program, that
   allows individuals learn how to use Linux Terminal programs. This program will
   help users of all levels; However, the goal will be aimed towards beginners at
   the beginning.
-
+** Contributions
+There is a scrum board located in the projects tab for what I am currently working on. 
 ** Milestones
-*** Understanding Documentation
-    I have a book,that I have been reading to understand how the Linux system
-    works. It would be hard to build a tool that educates users, if you dont
-    fully understand how the program works.
-
-    There are also many APIs covering how to manipulate the command line. 
-    Python and C/C++ both offer system calls that rely on pipe commands to execute.
-    
-    Alot of the tutorial could be done with pipe commands however you cannot
-    change directories.
-
-    Create documentation for newcomers, who want to participte in the project.
-
-    DEADLINE: <06-10-2018> 
-*** Determine complexity of the project
-    Create a working project that can interact fully with the terminal, that
-    prints instructions without having to type in the name of the program
-    multiple times. There could be a lot of potential issues, one being the
-    ability to use the terminal to run the program. Two, this might need a
-    terminal emulator to mimic the responses of an actual terminal. Might need a
-    previous emulator and tailor it to my needs. 
-
-    DEADLINE: <06-20-2018>
-
-*** Develop a working demonstration
-    Confirm that this project will work within the terminal by creating a small
-    working sample of commands and executions.
-
-    DEADLINE: <07-01-2018>
-    
 *** Extensibility
     I want to extract the portions of the code that conduct system calls and
     create a template for other module classes to call when developing new
@@ -67,4 +38,8 @@
 
 
     
-    
+** Installation
+
+** Documentation
+   Documentation for all aspects of this project have been added to the Documentation directory.
+   
