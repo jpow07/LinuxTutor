@@ -1,0 +1,9 @@
+     ___                     +-------------------------------+
+    /  /  _____________      | Welcome to Linux Tutor. Here  |
+   /  /  /_____   ____/      | we will navigate throughout   |
+  /  /        /  /           | the Linux Terminal. We will   |
+ /  /inux____/  /            | cover some basic to more      |
+/___________/  utor          | advanced commands.            |
+           /  /              +-------------------------------+
+          /__/ 
+   
