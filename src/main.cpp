@@ -8,14 +8,16 @@
 #include "color.hpp"
 
 void displayLogo();
+void successMessage(const std::string &message, winsize &w);
+void errorMessage(const std::string &message, winsize &w);
 
 int main(){
-
+  //Grabs terminal height and width
   struct winsize w;
   ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 
-  printf ("lines %d\n", w.ws_row);
-  printf ("columns %d\n", w.ws_col); 
+  //  printf ("lines %d\n", w.ws_row);
+  //  printf ("columns %d\n", w.ws_col); 
     
   displayLogo();
 
@@ -48,8 +50,8 @@ int main(){
     std::string firstArg = sub;
     
     std::fflush;
-    /////////////////////////////////////////////////////    
     
+
     if(firstArg == "exit") break;
     if(firstArg == "cd") {
       iss >> sub;
@@ -57,16 +59,10 @@ int main(){
 
     } else {
       
-      std::string addMargin = "\t\t\t\t\t";
-      
       if(firstArg == "ls") {
-        std::cout << bgColor::GREEN << addMargin
-                << "Great Work" << addMargin
-                << bgColor::RESET << std::endl;
+        successMessage("Great Work", w);
       } else {
-        std::cout << bgColor::RED << addMargin
-                << "Try Again" << addMargin
-                << bgColor::RESET << std::endl;
+        errorMessage("Try Again", w);
       }
       
       system(command.c_str());
@@ -97,3 +93,36 @@ void displayLogo() {
   std::cout << fgColor::RESET << std::endl;
 }
 
+void successMessage(const std::string &message, winsize &w) {
+
+  std::cout << bgColor::GREEN;
+  int margin = w.ws_col/2;
+  
+  for (int i = 0; i < margin - message.size(); i++)
+    std::cout << " ";
+  
+  std::cout << message;
+  
+  for (int i = 0; i < margin; i++)
+    std::cout << " ";
+  
+  std::cout << bgColor::RESET << std::endl;
+
+}
+
+void errorMessage(const std::string &message, winsize &w) {
+
+  std::cout << bgColor::RED;
+  int margin = w.ws_col/2;
+  
+  for (int i = 0; i < margin - message.size(); i++)
+    std::cout << " ";
+  
+  std::cout << message;
+  
+  for (int i = 0; i < margin; i++)
+    std::cout << " ";
+  
+  std::cout << bgColor::RESET << std::endl;
+
+}
