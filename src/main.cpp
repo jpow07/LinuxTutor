@@ -8,37 +8,21 @@
 #include <sys/ioctl.h>
 #include "color.hpp"
 
+//Declarations
 void displayLogo();
+std::string getPrompt();
 void feedbackMessage(const std::string &message, const std::string &color);
 int getColumnWidth();
 
 int main(){
-
-  //  printf ("lines %d\n", w.ws_row);
-  //  printf ("columns %d\n", w.ws_col); 
-    
+  
   displayLogo();
-
-  //get hostname from system
-  char hostname[100];
-  gethostname(hostname, 100);
-
-  //get login name from system
-  char loginName[100];
-  cuserid(loginName);
-
   //store command
   std::string command;
-  std::vector<std::string> substr;
 
   do{ 
      
-      
-    //Dispay Prompt
-    std::cout << fgColor::RED << loginName
-              << fgColor::GREEN << "@" << hostname << " "
-              << fgColor::WHITE << get_current_dir_name()
-              << fgColor::GREY << " $ ";
+    std::cout << getPrompt();
     
     //read input
     std::getline(std::cin, command);
@@ -48,9 +32,6 @@ int main(){
     std::string sub;
     iss >> sub;
     std::string firstArg = sub;
-    
-    std::fflush;
-    
 
     if(firstArg == "exit") break;
     if(firstArg == "cd") {
@@ -78,6 +59,7 @@ int main(){
   return 0;
 }
 
+//Functions//
 void displayLogo() {
   //Print Logo read from file
   std::ifstream istr;
@@ -91,6 +73,29 @@ void displayLogo() {
   }
   //Reset the color values
   std::cout << fgColor::RESET << std::endl;
+}
+
+std::string getPrompt() {
+
+  //get hostname from system
+  char hostname[50];
+  gethostname(hostname, 50);
+
+  //get login name from system
+  char loginName[20];
+  cuserid(loginName);
+  std::string prompt;
+  prompt.append(fgColor::RED);
+  prompt.append(loginName);
+  prompt.append("@");
+  prompt.append(hostname);
+  prompt.append(fgColor::ORANGE);
+  prompt.append(" ");
+  prompt.append(get_current_dir_name());
+  prompt.append(" $ ");
+  prompt.append(fgColor::RESET);
+  
+  return prompt;
 }
 
 void feedbackMessage(const std::string &message, const std::string &color) {
