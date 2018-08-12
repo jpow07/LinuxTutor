@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 #include <unistd.h>
 #include <stdlib.h>
 #include <fstream>
@@ -8,13 +9,10 @@
 #include "color.hpp"
 
 void displayLogo();
-void successMessage(const std::string &message, winsize &w);
-void errorMessage(const std::string &message, winsize &w);
+void feedbackMessage(const std::string &message, const std::string &color);
+int getColumnWidth();
 
 int main(){
-  //Grabs terminal height and width
-  struct winsize w;
-  ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 
   //  printf ("lines %d\n", w.ws_row);
   //  printf ("columns %d\n", w.ws_col); 
@@ -34,6 +32,8 @@ int main(){
   std::vector<std::string> substr;
 
   do{ 
+     
+      
     //Dispay Prompt
     std::cout << fgColor::RED << loginName
               << fgColor::GREEN << "@" << hostname << " "
@@ -60,9 +60,9 @@ int main(){
     } else {
       
       if(firstArg == "ls") {
-        successMessage("Great Work", w);
+        feedbackMessage("Great Work", "green");
       } else {
-        errorMessage("Try Again", w);
+        feedbackMessage("Try Again", "red");
       }
       
       system(command.c_str());
@@ -93,10 +93,11 @@ void displayLogo() {
   std::cout << fgColor::RESET << std::endl;
 }
 
-void successMessage(const std::string &message, winsize &w) {
-
-  std::cout << bgColor::GREEN;
-  int margin = w.ws_col/2;
+void feedbackMessage(const std::string &message, const std::string &color) {
+  
+  int margin = getColumnWidth()/2;
+  if (color == "green") std::cout << bgColor::GREEN;
+  if (color == "red")  std::cout << bgColor::RED;
   
   for (int i = 0; i < margin - message.size(); i++)
     std::cout << " ";
@@ -109,20 +110,11 @@ void successMessage(const std::string &message, winsize &w) {
   std::cout << bgColor::RESET << std::endl;
 
 }
+int getColumnWidth() {
+    //Grabs terminal height and width
+    struct winsize w;
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 
-void errorMessage(const std::string &message, winsize &w) {
-
-  std::cout << bgColor::RED;
-  int margin = w.ws_col/2;
-  
-  for (int i = 0; i < margin - message.size(); i++)
-    std::cout << " ";
-  
-  std::cout << message;
-  
-  for (int i = 0; i < margin; i++)
-    std::cout << " ";
-  
-  std::cout << bgColor::RESET << std::endl;
+    return w.ws_col;
 
 }
