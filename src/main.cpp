@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <fstream>
 #include <sstream>
-#include <vector>
 #include <sys/ioctl.h>
 #include "color.hpp"
 
@@ -34,6 +33,7 @@ int main(){
     std::string firstArg = sub;
 
     if(firstArg == "exit") break;
+    if(firstArg == "logo") displayLogo();
     if(firstArg == "cd") {
       iss >> sub;
       chdir(sub.c_str());
