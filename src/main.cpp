@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <sstream>
+#include <vector>
 #include <sys/ioctl.h>
 #include "color.hpp"
 
@@ -12,13 +13,14 @@ void displayLogo();
 std::string getPrompt();
 void feedbackMessage(const std::string &message, const std::string &color);
 int getColumnWidth();
+std::vector<std::string> getModule() {
 
 int main(){
   
   displayLogo();
   //store command
   std::string command;
-
+  
   do{ 
      
     std::cout << getPrompt();
@@ -41,13 +43,13 @@ int main(){
     } else {
       
       if(firstArg == "ls") {
-        feedbackMessage("Great Work", "green");
+        feedbackMessage("Correct!", "green");
       } else {
-        feedbackMessage("Try Again", "red");
+        feedbackMessage("Incorrect, Try Again", "red");
       }
       
       system(command.c_str());
-
+      
     }
 
     
@@ -100,21 +102,27 @@ std::string getPrompt() {
 
 void feedbackMessage(const std::string &message, const std::string &color) {
   
-  int margin = getColumnWidth()/2;
-  if (color == "green") std::cout << bgColor::GREEN;
-  if (color == "red")  std::cout << bgColor::RED;
+  int margin = getColumnWidth() - 2;
+  if (color == "green") std::cout << fgColor::GREEN;
+  if (color == "red")  std::cout << fgColor::RED;
+
+  // std::string checkmark = (color == "green")? "\u2714" : "\u2718";  
+  // std::cout << checkmark << " " << message;
   
-  for (int i = 0; i < margin - message.size(); i++)
-    std::cout << " ";
+  //Contents of message
+  for (int i = 0; i < (margin/2) - (message.size() + 2)/2; i ++){
+    std::cout << "-";
+  } 
+  std::string checkmark = (color == "green")? "\u2714" : "\u2718";  
+  std::cout << " " << checkmark << " " << message << " ";
   
-  std::cout << message;
-  
-  for (int i = 0; i < margin; i++)
-    std::cout << " ";
-  
-  std::cout << bgColor::RESET << std::endl;
+  for (int i = 0; i < (margin/2) - (message.size() + 2)/2; i ++){
+    std::cout << "-";
+  } 
+  std::cout << fgColor::RESET << std::endl;
 
 }
+
 int getColumnWidth() {
     //Grabs terminal height and width
     struct winsize w;
@@ -122,4 +130,11 @@ int getColumnWidth() {
 
     return w.ws_col;
 
+}
+
+
+std::vector<std::string> getModule() {
+  
+
+  
 }
