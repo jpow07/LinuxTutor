@@ -1,0 +1,59 @@
+         Welcome to the Beginner Module.
+
+
+Time Commitment: ~45 minutes
+
+In this Lesson you will learn the following:
+    - List the contents of a directory  [$ ls                   ]  
+    - Change between directories        [$ cd {dir}             ]
+    - Create a Directory (folder)       [$ mkdir {dirName}      ]
+    - Create a file                     [$ touch {file.ext}     ]
+    - Clear the terminal                [$ clear                ]
+    - Installing a Program              [$ sudo apt {program}   ]
+    - Input output redirection          [$ echo ... > file.txt  ]
+                                        [$ echo ... >> file.txt ]
+                                        [$ {Program} < input    ]
+    - Running Programs                  [$ ./{executable}       ]
+    - Pipes                             [$ ls | grep {Dir Name} ]
+    - Hidden File                       [$ .{File Name}         ]
+    - Linux Man Pages                   [$ man {Program Name}   ]
+
+Linux Tutor will provide a 'Command' and a brief description of the command. Keep in mind some commands require a lengthy explination; however, it will be much faster to read than it will be to search for it online, or you can ignore it completely and just type the command to see what it does.
+
+Instructions:
+
+You will type the 'command' into the Terminal prompt, where the terminal will execute the command.
+
+If at anytime you want to try the command again simply type 'Refresh {command}' and it will move you back to that point in the tutorial.
+
+Before we get started there are a couple of things to remember. The terminal is case sensitive. So 'L' is not 'l' and 'LinuxTutor' is not the same as 'linuxtutor'.
+
+Alright, Let's Begin!
+
+Command: clear
+
+'clear' will refresh the terminal screen.
+
+Enter the command [ clear ]now to clear the screen.
+
+
+Command: ls
+
+'ls' will diplay the contents of a directory that are not hidden.
+
+Enter the command [ ls ] now to list the contents in the directory.
+
+Command: mkdir {directory name}
+
+'mkdir' makes a directory/folder.
+
+For this tutorial we will be making a directory called ltDir.
+
+Enter the command [mkdir ltDir] now to create a new directory.
+
+Command: cd {directory name}
+
+'cd' will change directories. This command is how you will navigate around the terminal.
+
+Enter the command [cd ltDir] now to to move into the new directory you just created.
+
