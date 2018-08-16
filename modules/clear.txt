@@ -1,0 +1,5 @@
+Command: clear
+
+Description: 'clear' will refresh the terminal screen.
+
+Enter the command [ clear ]now to clear the screen.

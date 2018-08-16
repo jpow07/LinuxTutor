@@ -1,0 +1,5 @@
+Description: 'mkdir' makes a directory/folder.
+
+For this tutorial we will be making a directory called ltDir.
+
+Enter the command [mkdir ltDir] now to create a new directory.

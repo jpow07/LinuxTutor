@@ -1,5 +1,5 @@
-         Welcome to the Beginner Module.
 
+                   Welcome to the Beginner Module.
 
 Time Commitment: ~45 minutes
 
@@ -29,31 +29,3 @@ If at anytime you want to try the command again simply type 'Refresh {command}' 
 Before we get started there are a couple of things to remember. The terminal is case sensitive. So 'L' is not 'l' and 'LinuxTutor' is not the same as 'linuxtutor'.
 
 Alright, Let's Begin!
-
-Command: clear
-
-'clear' will refresh the terminal screen.
-
-Enter the command [ clear ]now to clear the screen.
-
-
-Command: ls
-
-'ls' will diplay the contents of a directory that are not hidden.
-
-Enter the command [ ls ] now to list the contents in the directory.
-
-Command: mkdir {directory name}
-
-'mkdir' makes a directory/folder.
-
-For this tutorial we will be making a directory called ltDir.
-
-Enter the command [mkdir ltDir] now to create a new directory.
-
-Command: cd {directory name}
-
-'cd' will change directories. This command is how you will navigate around the terminal.
-
-Enter the command [cd ltDir] now to to move into the new directory you just created.
-
