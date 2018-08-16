@@ -13,20 +13,26 @@ void displayLogo();
 std::string getPrompt();
 void feedbackMessage(const std::string &message, const std::string &color);
 int getColumnWidth();
-std::vector<std::string> getModule() {
+void printInstructions();
+void printCommand(); 
+void printNextCommand(const std::string &file);
 
 int main(){
   
   displayLogo();
   //store command
   std::string command;
-  
-  do{ 
-     
+  printInstructions();
+  printCommand();
+
+  int index = 0;
+  do{
+
     std::cout << getPrompt();
     
     //read input
     std::getline(std::cin, command);
+
 
     //Break command into segments//////////////////////////
     std::istringstream iss(command);
@@ -34,6 +40,7 @@ int main(){
     iss >> sub;
     std::string firstArg = sub;
 
+    //print commands 
     if(firstArg == "exit") break;
     if(firstArg == "logo") displayLogo();
     if(firstArg == "cd") {
@@ -51,7 +58,10 @@ int main(){
       system(command.c_str());
       
     }
-
+    
+    if(index == 0) printNextCommand("modules/ls.txt");
+    if(index == 1) printNextCommand("modules/mkdir.txt");
+    ++index;
     
   }while (command != "exit");
 
@@ -132,9 +142,51 @@ int getColumnWidth() {
 
 }
 
+void printInstructions() {
+   
+   //Print Logo read from file
+   std::ifstream istr;
+   istr.open("modules/beginner.txt");
 
-std::vector<std::string> getModule() {
-  
+   std::string input;
 
-  
+   std::cout << fgColor::GREEN << std::endl;
+
+   while (!istr.eof()) {
+     std::getline(istr, input);
+     std::cout << input << std::endl;
+   }
+
+   std::cout << fgColor::RESET << std::endl;
+   
+ }
+
+void printCommand() {
+
+  std::cout << fgColor::GREY << std::endl;
+
+  std::ifstream istr;
+  istr.open("modules/clear.txt");
+  std::string input;
+
+  while (!istr.eof()) {
+    std::getline(istr, input);
+    std::cout << input << std::endl;
+  }
+  std::cout << fgColor::GREY << std::endl;
+}
+
+void printNextCommand(const std::string &file) {
+
+  std::cout << fgColor::GREY << std::endl;
+
+  std::ifstream istr;
+  istr.open(file.c_str());
+  std::string input;
+
+  while (!istr.eof()) {
+    std::getline(istr, input);
+    std::cout << input << std::endl;
+  }
+  std::cout << fgColor::GREY << std::endl;
 }
