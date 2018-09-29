@@ -28,7 +28,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <gtest/gtest.h>
-#include "../src/factorial.cpp"
+#include "factorial.cpp"
 
 
 TEST(factorial, Positive){
@@ -37,17 +37,6 @@ TEST(factorial, Positive){
 
 TEST(factorial, zero){
   EXPECT_EQ(1, factorial(0));
-}
-
-TEST(testTwo, addition){
-  EXPECT_EQ(4, add(2, 2));
-  EXPECT_EQ(100, add(50,50));
-}
-
-TEST(testThree, greatestCommonDenominator){
-  EXPECT_EQ(0, gcd(0, 5));
-  EXPECT_EQ(4, gcd(8, 12));
-            
 }
 
 int main(int argc, char *argv[])
